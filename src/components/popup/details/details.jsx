@@ -65,10 +65,6 @@ export default class Details extends Component {
 
 		return (
 			<div class={style.details}>
-				<CloseButton
-					class={style.close}
-					onClick={onClose}
-				/>
 				<div class={style.header}>
 					<LocalLabel localizeKey='title'>User Privacy Preferences</LocalLabel>
 				</div>
