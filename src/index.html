@@ -6,41 +6,128 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<script>
-		(function(window) {
-			window.__cmp = (function() {
-				window.addEventListener('message', function(event) {
-					window.__cmp.receiveMessage(event);
+		function handleConsentResult(vendorList, vendorConsents) {
+			if (!vendorList) {
+				console.log('--No vendors were found.'); //Do Nothing
+				return
+			} else if (!vendorConsents) {
+				console.log('--No consent data found. Showing consent tool');
+				window.__cmp('showConsentTool');
+			} else if (vendorList.vendorListVersion !== vendorConsents.vendorListVersion) {
+				console.log('Consent was found for a different version ');
+
+				let vendorConsentsExpirationDate = new Date(vendorConsents.lastUpdated); //Creates date with last updated date
+				vendorConsentsExpirationDate.setDate(vendorConsentsExpirationDate.getDate()+30); //adds 30 days to it
+
+				if (new Date() > vendorConsentsExpirationDate) {
+					console.log('--And this version is older than 30 days. Showing Footer');
+					window.__cmp('showFooter');
+				}
+			}
+		}
+
+		(function(window, document) {
+			if (!window.__cmp) {
+				window.__cmp = (function() {
+					let listen = window.attachEvent || window.addEventListener;
+					listen('message', function(event) {
+						window.__cmp.receiveMessage(event);
+					}, false);
+
+					function addLocatorFrame() {
+						if (!window.frames['__cmpLocator']) {
+							if (document.body) {
+								let frame = document.createElement('iframe');
+								frame.style.display = 'none';
+								frame.name = '__cmpLocator';
+								document.body.appendChild(frame);
+							} else {
+								setTimeout(addLocatorFrame, 5);
+							}
+						}
+					}
+					addLocatorFrame();
+
+					let commandQueue = [];
+					let cmp = function(command, parameter, callback) {
+						if (command === 'ping') {
+							if (callback) {
+								callback({
+									gdprAppliesGlobally: !!(window.__cmp && window.__cmp.config && window.__cmp.config.storeConsentGlobally),
+									cmpLoaded: false
+								});
+							}
+						} else {
+							commandQueue.push({
+								command: command,
+								parameter: parameter,
+								callback: callback
+							});
+						}
+					};
+					cmp.commandQueue = commandQueue;
+					cmp.receiveMessage = function(event) {
+						var data = event && event.data && event.data.__cmpCall;
+						if (data) {
+							commandQueue.push({
+								callId: data.callId,
+								command: data.command,
+								parameter: data.parameter,
+								event: event
+							});
+						}
+					};
+					cmp.config = {
+						//
+						// Modify config values here
+						//
+						globalVendorListLocation: 'https://vendorlist.consensu.org/vendorlist.json',
+						customPurposeListLocation: 'localhost:8088/docs/purposes.json',
+						globalConsentLocation: 'localhost:8088/docs/portal.html',
+						storeConsentGlobally: true,
+						// storePublisherData: false,
+						logging: 'debug',
+						// localization: {},
+						// forceLocale: 'en-us'
+					};
+					return cmp;
+				}());
+
+				let script = document.createElement('script');
+				script.async = false;
+				script.src = '//localhost:8088/cmp.complete.bundle.js';
+				const head = document.getElementsByTagName('head')[0];
+
+				window.__cmp('addEventListener', 'cmpReady', function(result) {
+					//If cookies are not enabled, there's nothing we can do.
+
+					document.cookie="testcookie";
+					let cookieEnabled = (document.cookie.indexOf("testcookie") !== -1);
+
+
+					if (!window.navigator.cookieEnabled || !cookieEnabled) {
+						console.log('--cookies are not enabled');
+						// window.__cmp('showConsentTool', null, function(result) {}); // Should we still display the consent tool?
+						return
+					}
+
+					window.__cmp('getVendorList', null, function(vendorList) {
+						const timeout = setTimeout(() => {
+							handleConsentResult(vendorList);
+							console.log('timeout');
+						}, 100);
+
+						window.__cmp('getVendorConsents', null, function(vendorConsents) {
+							console.log('getVendorConsents');
+							clearTimeout(timeout);
+							handleConsentResult(vendorList, vendorConsents);
+						})
+					});
 				});
 
-				var commandQueue = [];
-				var cmp = function(command, parameter, callback) {
-					commandQueue.push({
-						command: command,
-						parameter: parameter,
-						callback: callback
-					});
-				};
-				cmp.commandQueue = commandQueue;
-				cmp.receiveMessage = function(event) {
-					var data = event && event.data && event.data.__cmpCall;
-					if (data) {
-						commandQueue.push({
-							callId: data.callId,
-							command: data.command,
-							parameter: data.parameter,
-							event: event
-						});
-					}
-				};
-				cmp.config = {
-					customPurposeListLocation: 'docs/purposes.json',
-					globalConsentLocation: 'docs/portal.html'
-				};
-				return cmp;
-			}());
-		})(window);
-
-		__cmp('showConsentTool');
+				head.append(script);
+			}
+		})(window, document);
 	</script>
 </head>
 <body>
