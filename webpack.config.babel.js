@@ -105,10 +105,12 @@ const commonConfig = {
 				]
 			},
 			{
-				test: /\.(less|css)$/,
+				test: /\.(less|css|scss)$/,
 				include: [
 					path.resolve(__dirname, 'src/docs/style'),
 					path.resolve(__dirname, 'node_modules/codemirror/lib/codemirror.css'),
+					path.resolve(__dirname, 'node_modules/react-flags-select/css/react-flags-select.css'),
+					path.resolve(__dirname, 'node_modules/react-flags-select/scss/react-flags-select.scss'),
 				],
 				use: [
 					{

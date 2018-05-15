@@ -2,7 +2,8 @@ import { h, Component } from 'preact';
 import style from './intro.less';
 import Button from '../../button/button';
 import Label from '../../label/label';
-import CloseButton from '../../closebutton/closebutton';
+import ReactFlagsSelect from 'react-flags-select';
+import 'react-flags-select/scss/react-flags-select.scss';
 
 class LocalLabel extends Label {
 	static defaultProps = {
@@ -27,6 +28,7 @@ export default class Intro extends Component {
 
 		return (
 			<div class={style.intro}>
+
 				<div class={style.title}>
 					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {DOMAIN}
 				</div>
