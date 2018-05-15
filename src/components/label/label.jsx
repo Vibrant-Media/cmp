@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import {Localize} from '../../lib/localize';
-
-const lookup = new Localize().lookup;
+import config from '../../lib/config';
 
 export default class Label extends Component {
 	static defaultProps = {
@@ -9,6 +8,7 @@ export default class Label extends Component {
 	};
 
 	render(props, state) {
+		const lookup = new Localize().lookup;
 		const { prefix, localizeKey, className, children } = props;
 		const key = prefix ? `${prefix}.${localizeKey}` : localizeKey;
 		const localizedContent = lookup(key);

@@ -389,4 +389,9 @@ export default class Store {
 		this.customPurposeList = customPurposeList;
 		this.storeUpdate();
 	};
+
+	updateLanguage = (language) => {
+		config.forceLocale = language;
+		this.storeUpdate();
+	}
 }

@@ -4,6 +4,7 @@ import Button from '../../button/button';
 import Label from '../../label/label';
 import ReactFlagsSelect from 'react-flags-select';
 import 'react-flags-select/scss/react-flags-select.scss';
+import {findLocale} from "../../../lib/localize";
 
 class LocalLabel extends Label {
 	static defaultProps = {
@@ -16,19 +17,46 @@ const DOMAIN = HOST_PARTS.length > 0 ? HOST_PARTS.slice(-2).join('.') : '';
 
 export default class Intro extends Component {
 
-	static defaultProps = {};
+	static defaultProps = {
+	};
+
+	onSelectFlag(countryCode) {
+		console.log(countryCode);
+		this.props.store.updateLanguage(countryCode);
+	}
+
+	componentWillMount() {
+		this.selectDefaultFlag()
+	}
+
+	selectDefaultFlag() {
+		let defaultFlag = findLocale();
+		defaultFlag = defaultFlag.toUpperCase();
+		if (defaultFlag.includes("GB") || defaultFlag.includes("EN")) {
+			defaultFlag = "GB";
+		}
+		defaultFlag = defaultFlag.split('-');
+		this.setState({
+			defaultFlag: defaultFlag[0]
+		});
+	}
 
 	render(props, state) {
 
 		const {
 			onAcceptAll,
 			onShowPurposes,
-			onClose
 		} = props;
 
 		return (
 			<div class={style.intro}>
-
+				<div className={style.customFlagSelect}>
+					<ReactFlagsSelect
+						countries={["GB", "FR", "DE"]}
+						customLabels={{"GB": "English", "FR": "Français", "DE": "Deutsch"}}
+						onSelect={this.onSelectFlag.bind(this)}
+						defaultCountry={this.state.defaultFlag}/>
+				</div>
 				<div class={style.title}>
 					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {DOMAIN}
 				</div>
