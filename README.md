@@ -6,7 +6,7 @@ CMP is a tool for publishers to engage users of their properties and gather & st
 ### Installation
 
 ```sh
-git clone https://github.com/appnexus/cmp.git
+git clone https://github.com/Vibrant-Media/cmp.git
 cd cmp
 yarn install
 ```
