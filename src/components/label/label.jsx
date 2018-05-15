@@ -16,7 +16,8 @@ export default class Label extends Component {
 		return (
 			<span
 				class={props.class || className}
-				dangerouslySetInnerHTML={localizedContent && {__html: localizedContent}}>
+				dangerouslySetInnerHTML={localizedContent && {__html: localizedContent}}
+				style={props.style}>
 				{!localizedContent && children}
 			</span>
 		);

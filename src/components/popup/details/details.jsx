@@ -6,6 +6,8 @@ import Purposes from './purposes/purposes';
 import Vendors from './vendors/vendors';
 import Panel from '../../panel/panel';
 import Label from "../../label/label";
+import {addCss, lightenDarkenColor} from "../../../lib/customizer";
+import config from "../../../lib/config";
 
 const SECTION_PURPOSES = 0;
 const SECTION_VENDORS = 1;
@@ -37,6 +39,25 @@ export default class Details extends Component {
 			onCancel();
 		}
 	};
+
+	componentWillMount() {
+		if (config.themeColor) {
+			const buttonBackgroundStyle = "background: "+config.themeColor+"!important; ";
+
+			const brighterColor = lightenDarkenColor(config.themeColor, -66);
+			const buttonHoverColorStyle = "color: "+brighterColor+"!important; ";
+
+			const acceptAllCSS      = "."+style.save+"{"+buttonBackgroundStyle+"}";
+			const acceptAllHoverCSS = "."+style.save+":hover {"+buttonHoverColorStyle+"}";
+
+			const rejectAllCss = "."+style.cancel+"{"+"color: "+config.themeColor+"!important}";
+
+			const css  = acceptAllCSS + acceptAllHoverCSS + rejectAllCss;
+
+			addCss(css);
+
+		}
+	}
 
 	render(props, state) {
 		const {

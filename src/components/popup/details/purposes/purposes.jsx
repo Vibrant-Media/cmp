@@ -2,6 +2,8 @@ import { h, Component } from 'preact';
 import style from './purposes.less';
 import Switch from '../../../switch/switch';
 import Label from "../../../label/label";
+import config from "../../../../lib/config";
+import {lightenDarkenColor, addCss} from "../../../../lib/customizer";
 
 class LocalLabel extends Label {
 	static defaultProps = {
@@ -50,9 +52,23 @@ export default class Purposes extends Component {
 		}
 	};
 
+	componentWillMount() {
+		if (config.themeColor) {
+			const buttonBackgroundStyle = "background: "+config.themeColor+"!important; ";
+
+			const brighterColor = lightenDarkenColor(config.themeColor, -66);
+
+			const txtColorCSS = "."+style.active+", ."+style.vendorLink+"{color: "+config.themeColor+"!important}";
+
+			const css  = txtColorCSS;
+
+			addCss(css);
+
+		}
+	}
+
 
 	render(props, state) {
-
 		const {
 			onShowVendors,
 			purposes,

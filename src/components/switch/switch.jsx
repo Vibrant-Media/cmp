@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import style from './switch.less';
+import config from "../../lib/config";
 
 export default class Switch extends Component {
 
@@ -17,11 +18,15 @@ export default class Switch extends Component {
 	};
 
 	render(props) {
-		const {
+		let {
 			isSelected,
 			isDisabled,
 			color
 		} = props;
+
+		if (config.themeColor) {
+			color = config.themeColor;
+		}
 
 		return (
 			<span
