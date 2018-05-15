@@ -9,6 +9,7 @@ export function findLocale() {
 			navigator.userLanguage ||
 			(navigator.languages && navigator.languages[0]) ||
 			'en-us'
+
 		));
 	return locale.toLowerCase();
 }
