@@ -50,7 +50,7 @@ export default class Intro extends Component {
 	selectDefaultFlag() {
 		let defaultFlag = findLocale();
 		defaultFlag = defaultFlag.toUpperCase();
-		if (defaultFlag.includes("GB") || defaultFlag.includes("EN")) {
+		if (defaultFlag.indexOf("GB") !== -1 || defaultFlag.indexOf("EN") !== -1) {
 			defaultFlag = "GB";
 		}
 		defaultFlag = defaultFlag.split('-');

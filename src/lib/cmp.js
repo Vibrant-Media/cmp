@@ -241,4 +241,16 @@ export default class Cmp {
 			this.processCommandQueue();
 		}
 	};
+
+	/**
+	 * Get the encoded vendor consent data value without queuing
+	 */
+	getConsentDataNow: (_, callback = () => {}) => {
+		const consentData = {
+			gdprApplies: config.gdprApplies,
+			hasGlobalScope: config.storeConsentGlobally,
+			consentData: this.generateConsentString() || ''
+		};
+		callback(consentData, true);
+	},
 }
