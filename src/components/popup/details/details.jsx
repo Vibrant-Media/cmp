@@ -44,7 +44,7 @@ export default class Details extends Component {
 		if (config.themeColor) {
 			const buttonBackgroundStyle = "background: "+config.themeColor+"!important; ";
 
-			const brighterColor = lightenDarkenColor(config.themeColor, -66);
+			const brighterColor = lightenDarkenColor(config.themeColor, -0.3);
 			const buttonHoverColorStyle = "color: "+brighterColor+"!important; ";
 
 			const acceptAllCSS      = "."+style.save+"{"+buttonBackgroundStyle+"}";

@@ -32,7 +32,7 @@ export default class Intro extends Component {
 		if (config.themeColor) {
 			const buttonBackgroundStyle = "background: "+config.themeColor+"!important; ";
 
-			const brighterColor = lightenDarkenColor(config.themeColor, -66);
+			const brighterColor = lightenDarkenColor(config.themeColor, -0.3);
 			const buttonHoverColorStyle = "color: "+brighterColor+"!important; ";
 
 			const acceptAllCSS      = "."+style.acceptAll+"{"+buttonBackgroundStyle+"}";
@@ -68,6 +68,9 @@ export default class Intro extends Component {
 
 		return (
 			<div class={style.intro}>
+				{config.customLogo &&
+					<img src={config.customLogo} class={style.customLogo}/>
+				}
 				<div className={style.customFlagSelect}>
 					<ReactFlagsSelect
 						countries={["GB", "FR", "DE"]}

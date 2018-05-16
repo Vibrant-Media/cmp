@@ -11,7 +11,8 @@ const defaultConfig = {
 	forceLocale: null,
 	gdprApplies: true,
 	allowedVendorIds: null,
-	themeColor: null
+	themeColor: null,
+	customLogo: null
 };
 
 class Config {
