@@ -80,6 +80,18 @@ export default class Cmp {
 		},
 
 		/**
+		 * Get the encoded vendor consent data value without queuing
+		 */
+		getConsentDataNow: (_, callback = () => {}) => {
+			const consentData = {
+				gdprApplies: config.gdprApplies,
+				hasGlobalScope: config.storeConsentGlobally,
+				consentData: this.generateConsentString() || ''
+			};
+			callback(consentData, true);
+		},
+
+		/**
 		 * Add a callback to be fired on a specific event.
 		 * @param {string} event Name of the event
 		 */
@@ -241,16 +253,4 @@ export default class Cmp {
 			this.processCommandQueue();
 		}
 	};
-
-	/**
-	 * Get the encoded vendor consent data value without queuing
-	 */
-	getConsentDataNow: (_, callback = () => {}) => {
-		const consentData = {
-			gdprApplies: config.gdprApplies,
-			hasGlobalScope: config.storeConsentGlobally,
-			consentData: this.generateConsentString() || ''
-		};
-		callback(consentData, true);
-	},
 }
