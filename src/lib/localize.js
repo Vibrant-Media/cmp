@@ -2,15 +2,28 @@ import translations from './translations';
 import config from './config';
 
 export function findLocale() {
-	const locale = config.forceLocale ||
-		(navigator && (
+	let locale;
+
+	let req = new XMLHttpRequest();
+	req.open('GET', document.location, false);
+	req.send(null);
+	let contentLanguageHeader = req.getResponseHeader('Content-Language');
+	if (config.forceLocale) {
+		locale = config.forceLocale;
+	} else if (contentLanguageHeader) {
+		locale = contentLanguageHeader.split('-')[0];
+	} else {
+		locale = (navigator && (
 			navigator.language ||
 			navigator.browserLanguage ||
 			navigator.userLanguage ||
 			(navigator.languages && navigator.languages[0]) ||
 			'en-us'
-
 		));
+	}
+
+
+
 	return locale.toLowerCase();
 }
 
