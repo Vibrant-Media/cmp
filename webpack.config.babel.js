@@ -77,7 +77,10 @@ const commonConfig = {
 				],
 				use: [
 					{
-						loader: 'style-loader'
+						loader: 'style-loader',
+						options: {
+							insertAt: 'top'
+						}
 					},
 					{
 						loader: 'css-loader',
@@ -86,7 +89,7 @@ const commonConfig = {
 							sourceMap: CSS_MAPS,
 							importLoaders: 1,
 							minimize: true,
-							localIdentName: '[name]_[local]--[hash:base64:5]'
+							localIdentName: 'vibrant-[name]_[local]',
 						}
 					},
 					{
@@ -114,7 +117,7 @@ const commonConfig = {
 				],
 				use: [
 					{
-						loader: 'style-loader'
+						loader: 'style-loader',
 					},
 					{
 						loader: 'css-loader'
