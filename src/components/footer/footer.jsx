@@ -35,20 +35,19 @@ export default class Footer extends Component {
 		return (
 			<div
 				class={style.footer}
-				style={{ borderTop: "2px solid"+config.themeColor, display: isFooterShowing ? 'flex' : 'none'}}
+				style={{display: isFooterShowing ? 'flex' : 'none'}}
 				>
 				<CloseButton
 					hasBorder={true}
 					class={style.close}
 					onClick={this.handleClose}
-					style={{boxShadow: "0 0 0 3px "+config.themeColor}}
 				/>
 				<LocalLabel localizeKey='message' class={style.message}>A reminder you can control your user privacy preferences</LocalLabel>
 				<a
 					class={style.openConsent}
 					onClick={this.handleShowConsent}
 				>
-					<LocalLabel style={"color:"+config.themeColor} localizeKey='consentLink'>here</LocalLabel>
+					<LocalLabel localizeKey='consentLink'>here</LocalLabel>
 				</a>
 			</div>
 		);

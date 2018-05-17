@@ -5,8 +5,6 @@ import Label from '../../label/label';
 import ReactFlagsSelect from 'react-flags-select';
 import 'react-flags-select/scss/react-flags-select.scss';
 import {findLocale} from "../../../lib/localize";
-import config from "../../../lib/config";
-import {lightenDarkenColor, addCss} from "../../../lib/customizer";
 
 class LocalLabel extends Label {
 	static defaultProps = {
@@ -23,28 +21,11 @@ export default class Intro extends Component {
 	};
 
 	onSelectFlag(countryCode) {
-		console.log(countryCode);
 		this.props.store.updateLanguage(countryCode);
 	}
 
 	componentWillMount() {
 		this.selectDefaultFlag();
-		if (config.themeColor) {
-			const buttonBackgroundStyle = "background: "+config.themeColor+"!important; ";
-
-			const brighterColor = lightenDarkenColor(config.themeColor, -0.3);
-			const buttonHoverColorStyle = "color: "+brighterColor+"!important; ";
-
-			const acceptAllCSS      = "."+style.acceptAll+"{"+buttonBackgroundStyle+"}";
-			const acceptAllHoverCSS = "."+style.acceptAll+":hover {"+buttonHoverColorStyle+"}";
-
-			const rejectAllCss = "."+style.rejectAll+"{"+"border: 2px solid "+config.themeColor+"!important; color: "+config.themeColor+"!important}";
-
-			const css  = acceptAllCSS + acceptAllHoverCSS + rejectAllCss;
-
-			addCss(css);
-
-		}
 	}
 
 	selectDefaultFlag() {
@@ -68,9 +49,9 @@ export default class Intro extends Component {
 
 		return (
 			<div class={style.intro}>
-				{config.customLogo &&
-					<img src={config.customLogo} class={style.customLogo}/>
-				}
+				<div className={style.customLogo}>
+
+				</div>
 				<div className={style.customFlagSelect}>
 					<ReactFlagsSelect
 						countries={["GB", "FR", "DE"]}

@@ -40,25 +40,6 @@ export default class Details extends Component {
 		}
 	};
 
-	componentWillMount() {
-		if (config.themeColor) {
-			const buttonBackgroundStyle = "background: "+config.themeColor+"!important; ";
-
-			const brighterColor = lightenDarkenColor(config.themeColor, -0.3);
-			const buttonHoverColorStyle = "color: "+brighterColor+"!important; ";
-
-			const acceptAllCSS      = "."+style.save+"{"+buttonBackgroundStyle+"}";
-			const acceptAllHoverCSS = "."+style.save+":hover {"+buttonHoverColorStyle+"}";
-
-			const rejectAllCss = "."+style.cancel+"{"+"color: "+config.themeColor+"!important}";
-
-			const css  = acceptAllCSS + acceptAllHoverCSS + rejectAllCss;
-
-			addCss(css);
-
-		}
-	}
-
 	render(props, state) {
 		const {
 			onCancel,

@@ -10,9 +10,7 @@ const defaultConfig = {
 	localization: {},
 	forceLocale: null,
 	gdprApplies: true,
-	allowedVendorIds: null,
-	themeColor: null,
-	customLogo: null
+	allowedVendorIds: null
 };
 
 class Config {

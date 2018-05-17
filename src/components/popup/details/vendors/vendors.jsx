@@ -51,10 +51,6 @@ export default class Vendors extends Component {
 		} = props;
 		const { editingConsents } = this.state;
 
-		if (config.themeColor) {
-			this.styleColor = "color:"+config.themeColor;
-		}
-
 		return (
 			<div class={style.vendors}>
 				<div class={style.header}>
@@ -69,7 +65,7 @@ export default class Vendors extends Component {
 						{!editingConsents &&
 						<div>
 							<a onClick={this.handleMoreChoices}>
-								<LocalLabel style={this.styleColor} localizeKey='moreChoices'>Make More Choices</LocalLabel>
+								<LocalLabel localizeKey='moreChoices'>Make More Choices</LocalLabel>
 							</a>
 						</div>
 						}

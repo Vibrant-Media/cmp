@@ -90,7 +90,7 @@ export default class Purposes extends Component {
 								<LocalLabel localizeKey={`${currentPurposeLocalizePrefix}.title`}>{selectedPurpose.name}</LocalLabel>
 							</div>
 							<div class={style.active}>
-								<LocalLabel style={"color:"+config.themeColor+"!important"} localizeKey={purposeIsActive ? 'active' : 'inactive'}>{purposeIsActive ? 'Active' : 'Inactive'}</LocalLabel>
+								<LocalLabel localizeKey={purposeIsActive ? 'active' : 'inactive'}>{purposeIsActive ? 'Active' : 'Inactive'}</LocalLabel>
 								<Switch
 									isSelected={purposeIsActive}
 									onClick={this.handleSelectPurpose}
@@ -99,7 +99,7 @@ export default class Purposes extends Component {
 						</div>
 						<div class={style.body}>
 							<LocalLabel localizeKey={`${currentPurposeLocalizePrefix}.description`} />
-							<a class={style.vendorLink} style={"color:"+config.themeColor+"!important"} onClick={onShowVendors}><LocalLabel localizeKey='showVendors'>Show full vendor list</LocalLabel></a>
+							<a class={style.vendorLink} onClick={onShowVendors}><LocalLabel localizeKey='showVendors'>Show full vendor list</LocalLabel></a>
 						</div>
 					</div>
 				</div>
