@@ -24,10 +24,6 @@ export default class Switch extends Component {
 			color
 		} = props;
 
-		if (config.themeColor) {
-			color = config.themeColor;
-		}
-
 		return (
 			<span
 				class={[style.switch, props.class, isSelected ? style.isSelected : ''].join(' ')}
@@ -40,7 +36,6 @@ export default class Switch extends Component {
 					type='checkbox'
 				/>
 				<span class={style.visualizationContainer} style={{backgroundColor: isSelected ? color : null}} />
-				<span class={style.visualizationGlow} style={{backgroundColor: color}} />
 				<span class={style.visualizationHandle} />
 			</span>
 		);
