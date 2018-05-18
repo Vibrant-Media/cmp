@@ -138,6 +138,7 @@ const commonConfig = {
 			},
 			{
 				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
+				exclude:[/node_modules\/react-flags-select\/flags\/(?!gb\.svg|fr\.svg|de\.svg).*/],
 				use: [
 					{
 						loader: ENV === 'production' ? 'file-loader' : 'url-loader',
@@ -145,6 +146,7 @@ const commonConfig = {
 							name: '[name].[ext]',
 							outputPath: 'cmp_assets/'
 						}
+
 					}
 				]
 			}
@@ -197,8 +199,7 @@ module.exports = [
 				'process.env.NODE_ENV': JSON.stringify(ENV)
 			}),
 			new webpack.ProvidePlugin({
-				'Promise': 'promise-polyfill',
-				'Includes': 'polyfill-array-includes'
+				'Promise': 'promise-polyfill'
 			}),
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
