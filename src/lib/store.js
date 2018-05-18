@@ -1,6 +1,7 @@
 import { writePublisherConsentCookie, writeVendorConsentCookie } from "./cookie/cookie";
 import config from './config';
 import { findLocale } from './localize';
+import { countriesList }  from './countries';
 
 /**
  * Copy a data object and make sure to replace references
@@ -391,7 +392,7 @@ export default class Store {
 	};
 
 	updateLanguage = (language) => {
-		config.forceLocale = language;
+		config.forceLocale = countriesList[language];
 		this.storeUpdate();
 	}
 }

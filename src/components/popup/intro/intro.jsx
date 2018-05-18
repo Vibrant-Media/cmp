@@ -5,6 +5,7 @@ import Label from '../../label/label';
 import ReactFlagsSelect from 'react-flags-select';
 import 'react-flags-select/scss/react-flags-select.scss';
 import {findLocale} from "../../../lib/localize";
+import { countriesList } from "../../../lib/countries";
 
 class LocalLabel extends Label {
 	static defaultProps = {
@@ -29,21 +30,16 @@ export default class Intro extends Component {
 	}
 
 	selectDefaultFlag() {
+
 		let defaultFlag = findLocale();
 
-		defaultFlag = defaultFlag.toUpperCase();
+		defaultFlag = defaultFlag.toLowerCase();
+		defaultFlag = defaultFlag.split('-')[0];
 
-		//If it's supposed to be some version of english
-		if (defaultFlag.indexOf("GB") !== -1 ||
-			defaultFlag.indexOf("EN") !== -1 ) {
-			//Default to GB
-			defaultFlag = "GB";
-		}
-
-		defaultFlag = defaultFlag.split('-');
+		defaultFlag = Object.keys(countriesList).find(key => countriesList[key] === defaultFlag);
 
 		this.setState({
-			defaultFlag: defaultFlag[0]
+			defaultFlag: defaultFlag
 		});
 	}
 
