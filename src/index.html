@@ -5,6 +5,7 @@
 	<title>GDPR Documentation</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
 	<meta name="apple-mobile-web-app-capable" content="yes">
+
 	<script>
 		function handleConsentResult(vendorList, vendorConsents) {
 			if (!vendorList) {
@@ -48,8 +49,8 @@
 					}
 					addLocatorFrame();
 
-					let commandQueue = [];
-					let cmp = function(command, parameter, callback) {
+					var commandQueue = [];
+					var cmp = function(command, parameter, callback) {
 						if (command === 'ping') {
 							if (callback) {
 								callback({
@@ -89,21 +90,20 @@
 						logging: 'debug',
 						// localization: {},
 						// forceLocale: 'en-us',
-						themeColor: '#ff0000' //create script to customize this
 					};
 					return cmp;
 				}());
 
-				let script = document.createElement('script');
+				var script = document.createElement('script');
 				script.async = false;
 				script.src = '//localhost:8088/cmp.complete.bundle.js';
-				const head = document.getElementsByTagName('head')[0];
+				var head = document.getElementsByTagName('head')[0];
 
 				window.__cmp('addEventListener', 'cmpReady', function(result) {
 					//If cookies are not enabled, there's nothing we can do.
 
 					document.cookie="testcookie";
-					let cookieEnabled = (document.cookie.indexOf("testcookie") !== -1);
+					var cookieEnabled = (document.cookie.indexOf("testcookie") !== -1);
 
 
 					if (!window.navigator.cookieEnabled || !cookieEnabled) {
@@ -113,7 +113,7 @@
 					}
 
 					window.__cmp('getVendorList', null, function(vendorList) {
-						const timeout = setTimeout(() => {
+						var timeout = setTimeout(() => {
 							handleConsentResult(vendorList);
 							console.log('timeout');
 						}, 100);
