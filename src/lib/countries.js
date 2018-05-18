@@ -3,4 +3,4 @@ export const countriesList = {
 	US: "en",
 	DE: "de",
 	FR: "fr"
-}
+};
