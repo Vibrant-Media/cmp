@@ -18,11 +18,9 @@ export function findLocale() {
 			navigator.browserLanguage ||
 			navigator.userLanguage ||
 			(navigator.languages && navigator.languages[0]) ||
-			'en-us'
+			'en'
 		));
 	}
-
-
 
 	return locale.toLowerCase();
 }
