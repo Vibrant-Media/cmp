@@ -138,7 +138,15 @@ const commonConfig = {
 			},
 			{
 				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-				use: ENV === 'production' ? 'file-loader' : 'url-loader'
+				use: [
+					{
+						loader: ENV === 'production' ? 'file-loader' : 'url-loader',
+						options: {
+							name: '[name].[ext]',
+							outputPath: 'cmp_assets/'
+						}
+					}
+				]
 			}
 		]
 	},
