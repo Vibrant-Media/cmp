@@ -5,10 +5,12 @@ import autoprefixer from 'autoprefixer';
 import path from 'path';
 
 const ENV = process.env.NODE_ENV || 'development';
+const VERSION = require("./package.json").version;
 
 const CSS_MAPS = ENV !== 'production';
 
 const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+	include: /cmp\.[(b|c)]/,
 	output: {
 		comments: false
 	},
@@ -183,14 +185,15 @@ module.exports = [
 	// CMP config
 	{
 		entry: {
-			cmp: './index.js',
+			"cmp": './index.js',
+			"cmp-dev": './index.js',
 			'cmp.complete': './complete.js'
 		},
 
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			publicPath: 'https://vibrant.mgr.consensu.org/',
-			filename: '[name].bundle.js'
+			filename: '[name].' + VERSION + '.bundle.js'
 		},
 		...commonConfig,
 		plugins: ([
@@ -205,7 +208,7 @@ module.exports = [
 				filename: 'index.html',
 				template: 'index.html',
 				chunks: ['cmp']
-			}),
+			})
 		]).concat(ENV === 'production' ? uglifyPlugin : []),
 	},
 	// Docs config
