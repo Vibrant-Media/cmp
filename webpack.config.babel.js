@@ -9,6 +9,7 @@ const ENV = process.env.NODE_ENV || 'development';
 const CSS_MAPS = ENV !== 'production';
 
 const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+	include: /cmp\.[(b|c)]/,
 	output: {
 		comments: false
 	},
@@ -183,7 +184,8 @@ module.exports = [
 	// CMP config
 	{
 		entry: {
-			cmp: './index.js',
+			"cmp": './index.js',
+			"cmp-dev": './index.js',
 			'cmp.complete': './complete.js'
 		},
 
