@@ -5,6 +5,7 @@ import autoprefixer from 'autoprefixer';
 import path from 'path';
 
 const ENV = process.env.NODE_ENV || 'development';
+const VERSION = require("./package.json").version;
 
 const CSS_MAPS = ENV !== 'production';
 
@@ -192,7 +193,7 @@ module.exports = [
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			publicPath: './',
-			filename: '[name].bundle.js'
+			filename: '[name].' + VERSION + '.bundle.js'
 		},
 		...commonConfig,
 		plugins: ([
@@ -207,7 +208,7 @@ module.exports = [
 				filename: 'index.html',
 				template: 'index.html',
 				chunks: ['cmp']
-			}),
+			})
 		]).concat(ENV === 'production' ? uglifyPlugin : []),
 	},
 	// Docs config
