@@ -138,8 +138,7 @@ const commonConfig = {
 			},
 			{
 				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-				// Only exports flags from GB/FR/DE
-				exclude:[/node_modules\/react-flags-select\/flags\/(?!gb\.svg|fr\.svg|de\.svg).*/],
+				// exclude:[/node_modules\/react-flags-select\/flags\/(?!gb\.svg|fr\.svg|de\.svg).*/],
 				use: [
 					{
 						loader: ENV === 'production' ? 'file-loader' : 'url-loader',
