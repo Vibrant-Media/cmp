@@ -102,15 +102,15 @@ export default {
 	de: {
 		intro: {
 			title: 'Vielen Dank für Ihren Besuch auf',
-			description: 'Wir und unsere Partner verwenden sogenannte Cookies (kleine Textdateien) im Webbrowser um zu verstehen, was unsere Besucher interessiert und entsprechend relevante Inhalte und Werbung anbieten zu können. Zukünftig benötigen wir wahrscheinlich ihr/euer Einverständnis dazu. Ein Beispiel, wie dies aussehen könnte, finden sie/findet ihr unter dieser Erklärung.',
-			acceptAll: 'Alle Cookies akzeptieren',
+			description: 'Wir und unsere Partner verwenden sogenannte Cookies, um unseren Besuchern relevante Inhalte und Werbung anbieten zu können. Zukünftig benötigen wir für die Verwendung der Cookies Ihr Einverständnis. Ein Beispiel dafür, wie dies aussehen könnte, finden Sie unter dieser Erklärung.',
+			acceptAll: 'Alles akzeptieren',
 			rejectAll: 'Alle Cookies ablehnen',
 			showPurposes: 'Verwendungszwecke zeigen'
 		},
 		details: {
 			title: 'Datenschutzeinstellungen',
 			back: 'Abbrechen',
-			save: 'Sichern und Beenden'
+			save: 'Speichern und Beenden'
 		},
 		purposes: {
 			active: 'Aktiv',
@@ -119,38 +119,32 @@ export default {
 			cookies: {
 				menu: 'Wie wir Cookies einsetzen',
 				title: 'Diese Website verwendet Cookies',
-				description: 'Unsere Partner und wir setzen Cookies (kleine Textdateien) und sammeln Informationen während des Surfens im Web in diesem Browser. Dies dient dazu zu verstehen, was unsere Besucher interessiert und entsprechend relevante Inhalte und Werbung anbieten zu können.'
-				// description: ''
+				description: 'Wir und unsere Partner verwenden sogenannte Cookies, um unseren Besuchern relevante Inhalte und Werbung anbieten zu können. Zukünftig benötigen wir für die Verwendung der Cookies Ihr Einverständnis. Ein Beispiel dafür, wie dies aussehen könnte, finden Sie unter dieser Erklärung.'
 			},
 			purpose1: {
-				menu: 'Zugriff auf ein Gerät',
-				title: 'Zugriff auf ein Gerät',
-				description: 'Die Erlaubnis zum Speichern und Abrufen von Informationen auf dem Gerät eines Website-Besuchers.Das ist notwendig, um Cookies im Web-Browser zu speichern und zur Anzeige relevanter Informationen und Werbung abrufen zu können.'
-				// description: ''
+				menu: 'Speichern und Zugreifen auf Informationen',
+				title: 'Speichern und Zugreifen auf Informationen',
+				description: 'Die Erlaubnis zur Speicherung und zum Abrufen von Informationen auf einem Nutzergerät. (Diese Erlaubnis ist zur Speicherung von Cookies im Web-Browser und damit zur Anzeige relevanter Inhalte und Werbung durch Abrufen der Information notwendig.)'
 			},
 			purpose2: {
-				menu: 'Persönlich angepaßte Werbung',
-				title: 'Persönlich angepaßte Werbung',
-				description: 'Die Erlaubnis, Besucherdaten so zu verarbeiten und/oder zu speichern und abzurufen, dass persönlich angepaßte Werbung angeboten und angezeigt werden kann (dies umfaßt die Auslieferung, Messung und die Erstellung von Berichten darüber). Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck.'
-				// description: ''
+				menu: 'Personalisierung',
+				title: 'Personalisierung',
+				description: 'Die Erlaubniss zur: <ul><li>Verarbeitung von Nutzerdaten, um personalisierte Werbung (inklusive Auslieferung, Messung und Reporting) anbieten zu können. Diese Personalisierung basiert auch auf Informationen, die bei der Nutzung anderer Seiten, Apps oder Geräten erfasst werden;</li><li>zum Abrufen oder Speichern von Informationen auf Geräten zu diesem Zweck.</li></ul>\nDies beinhaltet folgende Funktionen: <ul><li>Zuordnung von Daten zu offline Quellen – Kombinieren von Daten aus offline Quellen, die ursprünglich in anderen Zusammenhängen erfasst wurden</li><li>Gruppieren von Geräten – Erlaubnis zur Verarbeitung von Nutzerinformationen um einen Nutzer mit mehreren Geräten zu verknüpfen</li><li>Präzise Daten zur geographischen Lage – Erlaubnis zur Verarbeitung der Informationen über die präzise geographische Lage des Nutzers, zur Verwendung für Zwecke, für die der Dritte bereits eine Erlaubnis erhalten hat</li></ul>'
 			},
 			purpose3: {
-				menu: 'Analysen',
-				title: 'Analysen',
-				description: 'Die Erlaubnis, Besucherdaten zur Anzeige von Inhalten oder Werbung zu verarbeiten, und zur Messung der Auslieferung solcher Inhalte oder Werbung. Umfasst ist die Gewinnung von Erkenntnissen und die Generierung von Berichten um die Nutzung des angebotenen Service zu verstehen, und/oder das Abrufen oder Speichern von Informationen auf Geräten zu diesem Zweck.'
-				// description: ''
+				menu: 'Ad Auswahl, Auslieferung, Berichte',
+				title: 'Ad Auswahl, Auslieferung, Berichte',
+				description: 'Die Erlaubnis zur Verarbeitung von Nutzerdaten, zum Zwecke der Auslieferung personalisierter Inhalte oder Werbung und der Messung der Auslieferung solcher Inhalte und Werbung, das Gewinnen von  Erkenntnissen und das Generieren von Reports/Berichten um die Nutzung der Dienste zu analysieren und zu verstehen; und/oder zum Speichern und Abrufen von Informationen auf Geräten zu diesem Zweck.\n Dies beinhaltet folgende Funktionen:<ul><li>Zuordnung von Daten zu offline Quellen – Kombinieren von Daten aus offline Quellen, die ursprünglich in anderen Zusammenhängen erfasst wurden</li><li>Gruppieren von Geräten – Erlaubnis zur Verarbeitung von Nutzerinformationen um einen Nutzer mit mehreren Geräten zu verknüpfen</li><li>Präzise Daten zur geographischen Lage – Erlaubnis zur Verarbeitung der Informationen über die präzise geographische Lage des Nutzers, zur Verwendung für Zwecke, für die der Dritte bereits eine Erlaubnis erhalten hat</li></ul>'
 			},
 			purpose4: {
-				menu: 'Persönlich angepasste Inhalte',
-				title: 'Persönlich angepasste Inhalte',
-				description: 'Die Erlaubnis, Besucherdaten zur Anzeige von personalisierten Inhalten zu verarbeiten, und zur Messung der Auslieferung. Umfasst ist die Gewinnung von Erkenntnissen darüber und die Generierung von Berichten dazu. Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck.'
-				// description: ''
+				menu: 'Inhalt Auswahl, Auslieferung, Berichte',
+				title: 'Inhalt Auswahl, Auslieferung, Berichte',
+				description: 'Die Erlaubnis, Besucherdaten zur Bereitstellung personalisierten Inhalts, sowie zur Messung der Auslieferung zu verarbeiten. Dies umfasst Gewinnung von Erkenntnissen über die Auslieferung und die Generierung entsprechender Berichte. Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck. \n Dies beinhaltet folgende Funktionen <ul><li>Zuordnung von Daten zu offline Quellen – Kombinieren von Daten aus offline Quellen, die ursprünglich in anderen Zusammenhängen erfasst wurden</li><li>Gruppieren von Geräten – Erlaubnis zur Verarbeitung von Nutzerinformationen um einen Nutzer mit mehreren Geräten zu verknüpfen</li><li>Präzise Daten zur geographischen Lage – Erlaubnis zur Verarbeitung der Informationen über die präzise geographische Lage des Nutzers, zur Verwendung für Zwecke, für die der Dritte bereits eine Erlaubnis erhalten hat</li></ul>'
 			},
 			purpose5: {
 				menu: 'Messung',
 				title: 'Messung',
-				description: 'Die Sammlung von Informationen über Ihre Verwendung des Inhalts und die Kombination mit zuvor gesammelten Informationen, die zum Messen, Verstehen und Berichten Ihrer Nutzung des Inhalts verwendet wird.',
-				// description: ''
+				description: 'Das Sammeln von Informationen über Ihre Nutzung der Inhalte, auch in Kombination mit vorher gesammelter Information, die zum Messen, Verstehen und Berichten Ihrer Nutzung des Inhalts dienen.',
 			}
 		},
 		vendors: {
@@ -158,8 +152,8 @@ export default {
 			rejectAll: 'Alle ablehnen',
 			acceptAll: 'Alle akzeptieren',
 			company: 'Unternehmen',
-			offOn: 'Aus/An',
-			description: 'Helfen Sie uns, Ihnen einen besseren Service zu bieten! Unsere Partner verwenden Cookies Ihres Browsers, um quer durch das Web zu verstehen, was Sie interessiert und Ihnen entsprechend relevante Inhalte und Werbung anzubieten.',
+			offOn: 'Aktiv/Inaktiv',
+			description: 'Helfen Sie uns, Ihnen einen besseren Service zu bieten! Unsere Partner verwenden Cookies, um bei Ihrer Nutzung des Internets zu verstehen, welche Inhalte und Werbung für Sie relevant sind.',
 			moreChoices: 'Weitere Auswahlmöglichkeiten'
 		},
 		footer: {
