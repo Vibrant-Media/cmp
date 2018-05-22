@@ -144,7 +144,7 @@ const commonConfig = {
 						loader: ENV === 'production' ? 'file-loader' : 'url-loader',
 						options: {
 							name: '[name].[ext]',
-							outputPath: 'cmp_assets/'
+							outputPath: 'cmp_assets/',
 						}
 
 					}
@@ -189,7 +189,7 @@ module.exports = [
 
 		output: {
 			path: path.resolve(__dirname, 'build'),
-			publicPath: './',
+			publicPath: 'https://vibrant.mgr.consensu.org/',
 			filename: '[name].bundle.js'
 		},
 		...commonConfig,
