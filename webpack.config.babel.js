@@ -193,7 +193,7 @@ module.exports = [
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			publicPath: 'https://vibrant.mgr.consensu.org/',
-			filename: '[name].' + VERSION + '.bundle.js'
+			filename: '[name].bundle.' + VERSION + '.js'
 		},
 		...commonConfig,
 		plugins: ([
