@@ -229,7 +229,8 @@ module.exports = [
 		plugins: ([
 			new webpack.NoEmitOnErrorsPlugin(),
 			new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify(ENV)
+				'process.env.NODE_ENV': JSON.stringify(ENV),
+				'process.env.VENDOR_LIST_LOCATION': ENV === 'production' ? 'https://vendorlist.consensu.org/' : JSON.stringify('http://localhost:8088/docs/'),
 			}),
 			new webpack.ProvidePlugin({
 				'Promise': 'promise-polyfill',
