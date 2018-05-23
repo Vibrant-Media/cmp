@@ -187,7 +187,8 @@ module.exports = [
 		entry: {
 			"cmp": './index.js',
 			"cmp-dev": './index.js',
-			'cmp.complete': './complete.js'
+			'cmp.complete': './complete.js',
+			'readconsent': './read-consent.js'
 		},
 
 		output: {
