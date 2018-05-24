@@ -185,8 +185,8 @@ module.exports = [
 	// CMP config
 	{
 		entry: {
-			"cmp": './index.js',
-			"cmp-dev": './index.js',
+			'cmp.bundle': './index.js',
+			'cmp-dev': './index.js',
 			'cmp.complete': './complete.js',
 			'readconsent': './read-consent.js'
 		},
@@ -209,6 +209,11 @@ module.exports = [
 				filename: 'index.html',
 				template: 'index.html',
 				chunks: ['cmp']
+			}),
+			new HtmlWebpackPlugin({
+				filename: 'read-consent.bundle.'+VERSION+'.html',
+				template: 'read-consent.html',
+				inject: false
 			})
 		]).concat(ENV === 'production' ? uglifyPlugin : []),
 	},
