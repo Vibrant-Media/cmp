@@ -62,22 +62,22 @@ export default {
 			purpose1: {
 				menu: 'Stockage d\'informations et accès',
 				title: 'Stockage d\'informations et accès',
-				description: 'Autoriser le stockage ou l\'accès aux informations sur l\'appareil d\'un utilisateur.'
+				description: 'Autoriser le stockage ou l\'accès aux informations sur l\'appareil  utilisateur.'
 			},
 			purpose2: {
 				menu: 'Personnaliser',
 				title: 'Personnaliser',
-				description: 'Autoriser le traitement des données d\'un utilisateur pour la création de publicité personnalisée (y compris la diffusion, l\'analyse et la création de rapports) en fonction des préférences ou des intérêts d\'un utilisateur connus ou inférer à partir de données collectées sur plusieurs sites, applications ou appareils; et / ou accéder ou stocker des informations sur des dispositifs à cette fin. Inclura les caractéristiques suivantes:'
+				description: 'Autoriser le traitement des données utilisateur pour la création de publicité personnalisée (y compris la diffusion, l\'analyse et la création de rapports) en fonction des préférences ou des intérêts utilisateur connus ou inférer à partir de données collectées sur plusieurs sites, applications ou appareils; et / ou accéder ou stocker des informations sur des dispositifs à cette fin. Inclura les caractéristiques suivantes:'
 			},
 			purpose3: {
 				menu: 'Sélection d\'annonces, diffusion, rapport',
 				title: 'Sélection d\'annonces, diffusion, rapport',
-				description: 'Autoriser le traitement des données d\'un utilisateur pour fournir du contenu ou des publicités et mesurer la diffusion de ces contenus ou publicités, extraire des informations et générer des rapports pour comprendre l\'utilisation des services; et / ou accéder ou stocker des informations sur des dispositifs à cette fin. Inclura les caractéristiques suivantes:'
+				description: 'Autoriser le traitement des données utilisateur pour fournir du contenu ou des publicités et mesurer la diffusion de ces contenus ou publicités, extraire des informations et générer des rapports pour comprendre l\'utilisation des services; et / ou accéder ou stocker des informations sur des dispositifs à cette fin. Inclura les caractéristiques suivantes:'
 			},
 			purpose4: {
 				menu: 'Sélection de contenu, diffusion, rapport',
 				title: 'Sélection de contenu, diffusion, rapport',
-				description: 'Autoriser le traitement des données d\'un utilisateur pour la création de contenu personnalisé (y compris la diffusion, l\'analyse et la création de rapports) en fonction des préférences ou des intérêts d\'un utilisateur connus ou inférer à partir de données collectées sur plusieurs sites, applications ou appareils; et / ou accéder ou stocker des informations sur des dispositifs à cette fin. Inclura les caractéristiques suivantes:'
+				description: 'Autoriser le traitement des données utilisateur pour la création de contenu personnalisé (y compris la diffusion, l\'analyse et la création de rapports) en fonction des préférences ou des intérêts utilisateur connus ou inférer à partir de données collectées sur plusieurs sites, applications ou appareils; et / ou accéder ou stocker des informations sur des dispositifs à cette fin. Inclura les caractéristiques suivantes:'
 			},
 			purpose5: {
 				menu: 'Mesures',
@@ -101,50 +101,50 @@ export default {
 	},
 	de: {
 		intro: {
-			title: 'Vielen Dank für Ihren Besuch auf',
-			description: 'Wir und unsere Partner verwenden sogenannte Cookies, um unseren Besuchern relevante Inhalte und Werbung anbieten zu können. Zukünftig benötigen wir für die Verwendung der Cookies Ihr Einverständnis. Ein Beispiel dafür, wie dies aussehen könnte, finden Sie unter dieser Erklärung.',
-			acceptAll: 'Alles akzeptieren',
+			title: 'Danke für Ihren Besuch auf',
+			description: 'Für den erfolgreichen Betrieb einer Website setzen wir und bestimmte Dritte zu verschiedenen Zwecken Cookies. Diese Cookies werden auf diesem Gerät gespeichert und bei Bedarf wieder abgerufen. Einige Dritte sammeln ebenso Daten, um personalisierte Inhalte und Werbung anzuzeigen. Einige dieser Anbieter benötigen Ihre Zustimmung zur Erhebung von Daten, um Ihnen personalisierte Inhalte und Werbung anbieten zu können.',
+			acceptAll: 'Akzeptieren!',
 			rejectAll: 'Alle Cookies ablehnen',
-			showPurposes: 'Verwendungszwecke zeigen'
+			showPurposes: 'Ihre Einstellungen verwalten '
 		},
 		details: {
-			title: 'Datenschutzeinstellungen',
-			back: 'Abbrechen',
-			save: 'Speichern und Beenden'
+			title: 'DATENSCHUTZEINSTELLUNGEN BENUTZER',
+			back: 'Zurück',
+			save: 'Speichern und beenden'
 		},
 		purposes: {
 			active: 'Aktiv',
 			inactive: 'Inaktiv',
-			showVendors: 'Vollständige Liste der Partner anzeigen',
+			showVendors: 'Vollständige Anbieterliste anzeigen',
 			cookies: {
 				menu: 'Wie wir Cookies einsetzen',
 				title: 'Diese Website verwendet Cookies',
 				description: 'Wir und unsere Partner verwenden sogenannte Cookies, um unseren Besuchern relevante Inhalte und Werbung anbieten zu können. Zukünftig benötigen wir für die Verwendung der Cookies Ihr Einverständnis. Ein Beispiel dafür, wie dies aussehen könnte, finden Sie unter dieser Erklärung.'
 			},
 			purpose1: {
-				menu: 'Speichern und Zugreifen auf Informationen',
-				title: 'Speichern und Zugreifen auf Informationen',
-				description: 'Die Erlaubnis zur Speicherung und zum Abrufen von Informationen auf einem Nutzergerät. (Diese Erlaubnis ist zur Speicherung von Cookies im Web-Browser und damit zur Anzeige relevanter Inhalte und Werbung durch Abrufen der Information notwendig.)'
+				menu: 'Informationsspeicherung und -zugriff',
+				title: 'Informationsspeicherung und -zugriff',
+				description: 'Zulassen, dass Informationen auf dem Gerät eines Benutzers gespeichert und auf diese Informationen zugegriffen wird. '
 			},
 			purpose2: {
 				menu: 'Personalisierung',
 				title: 'Personalisierung',
-				description: 'Die Erlaubniss zur: <ul><li>Verarbeitung von Nutzerdaten, um personalisierte Werbung (inklusive Auslieferung, Messung und Reporting) anbieten zu können. Diese Personalisierung basiert auch auf Informationen, die bei der Nutzung anderer Seiten, Apps oder Geräten erfasst werden;</li><li>zum Abrufen oder Speichern von Informationen auf Geräten zu diesem Zweck.</li></ul>\nDies beinhaltet folgende Funktionen: <ul><li>Zuordnung von Daten zu offline Quellen – Kombinieren von Daten aus offline Quellen, die ursprünglich in anderen Zusammenhängen erfasst wurden</li><li>Gruppieren von Geräten – Erlaubnis zur Verarbeitung von Nutzerinformationen um einen Nutzer mit mehreren Geräten zu verknüpfen</li><li>Präzise Daten zur geographischen Lage – Erlaubnis zur Verarbeitung der Informationen über die präzise geographische Lage des Nutzers, zur Verwendung für Zwecke, für die der Dritte bereits eine Erlaubnis erhalten hat</li></ul>'
+				description: 'Die Verarbeitung und Bereitstellung der Nutzungsdaten Die Verarbeitung der Daten eines Benutzers zulassen, um personalisierte Werbung anbieten zu können (u.a. Bereitstellung, Messung und Berichte), und zwar auf der Grundlage der Präferenzen bzw. Interessen eines Benutzers, die aus den Daten, die über mehrere Websites, Apps oder Geräte hinweg gesammelt wurden, bekannt sind oder abgeleitet werden, sowie ggf. die Speicherung von Informationen auf Geräten und der Zugriff darauf zu diesem Zweck. Dies beinhaltet folgende Funktionen:<ul><li>Verknüpfung von Daten mit Offline-Quellen - Kombination von Daten aus Offline-Quellen, die ursprünglich in einem anderen Zusammenhang gesammelt wurden. \n</li><li>Verknüpfung von Geräten - Verarbeitung der Daten eines Benutzers zulassen, um diesen Benutzer über mehrere Geräte hinweg zu verbinden. \n</li><li>Genaue geografische Standortdaten - Verarbeitung des genauen Standortes eines Benutzers für Zwecke zulassen, für die der jeweilige Dritte über eine Zustimmung verfügt.</li></ul>'
 			},
 			purpose3: {
-				menu: 'Ad Auswahl, Auslieferung, Berichte',
-				title: 'Ad Auswahl, Auslieferung, Berichte',
-				description: 'Die Erlaubnis zur Verarbeitung von Nutzerdaten, zum Zwecke der Auslieferung personalisierter Inhalte oder Werbung und der Messung der Auslieferung solcher Inhalte und Werbung, das Gewinnen von  Erkenntnissen und das Generieren von Reports/Berichten um die Nutzung der Dienste zu analysieren und zu verstehen; und/oder zum Speichern und Abrufen von Informationen auf Geräten zu diesem Zweck.\n Dies beinhaltet folgende Funktionen:<ul><li>Zuordnung von Daten zu offline Quellen – Kombinieren von Daten aus offline Quellen, die ursprünglich in anderen Zusammenhängen erfasst wurden</li><li>Gruppieren von Geräten – Erlaubnis zur Verarbeitung von Nutzerinformationen um einen Nutzer mit mehreren Geräten zu verknüpfen</li><li>Präzise Daten zur geographischen Lage – Erlaubnis zur Verarbeitung der Informationen über die präzise geographische Lage des Nutzers, zur Verwendung für Zwecke, für die der Dritte bereits eine Erlaubnis erhalten hat</li></ul>'
+				menu: 'Auswahl, Bereitstellung von und Berichte über Werbeaanzeigen ',
+				title: 'Auswahl, Bereitstellung von und Berichte über Werbeaanzeigen ',
+				description: 'Die Verarbeitung der Nutzungsdaten zulassen, um Inhalte oder Werbung bereitzustellen sowie deren Bereitstellung zum besseren Verständnis der Service-Nutzung zu messen, Einblicke zu gewinnen und Berichte zu erzeugen, sowie ggf. die Speicherung von Informationen auf Geräten und der Zugriff darauf zu diesem Zweck. Dies beinhaltet folgende Funktionen: <ul><li>Verknüpfung von Daten mit Offline-Quellen - Kombination von Daten aus Offline-Quellen, die ursprünglich in einem anderen Zusammenhang gesammelt wurden.</li><li>Verknüpfung von Geräten - Verarbeitung der Daten eines Benutzers zulassen, um diesen Benutzer über mehrere Geräte hinweg zu erreichen. </li><li>Genaue geografische Standortdaten - Verarbeitung des genauen Standortes eines Benutzers für Zwecke zulassen, für die der jeweilige Dritte über eine Zustimmung verfügt. </li></ul>'
 			},
 			purpose4: {
-				menu: 'Inhalt Auswahl, Auslieferung, Berichte',
-				title: 'Inhalt Auswahl, Auslieferung, Berichte',
-				description: 'Die Erlaubnis, Besucherdaten zur Bereitstellung personalisierten Inhalts, sowie zur Messung der Auslieferung zu verarbeiten. Dies umfasst Gewinnung von Erkenntnissen über die Auslieferung und die Generierung entsprechender Berichte. Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck. \n Dies beinhaltet folgende Funktionen <ul><li>Zuordnung von Daten zu offline Quellen – Kombinieren von Daten aus offline Quellen, die ursprünglich in anderen Zusammenhängen erfasst wurden</li><li>Gruppieren von Geräten – Erlaubnis zur Verarbeitung von Nutzerinformationen um einen Nutzer mit mehreren Geräten zu verknüpfen</li><li>Präzise Daten zur geographischen Lage – Erlaubnis zur Verarbeitung der Informationen über die präzise geographische Lage des Nutzers, zur Verwendung für Zwecke, für die der Dritte bereits eine Erlaubnis erhalten hat</li></ul>'
+				menu: 'Auswahl, Bereitstellung von und Berichte über Inhalte',
+				title: 'Auswahl, Bereitstellung von und Berichte über Inhalte',
+				description: 'Die Verarbeitung der Daten eines Benutzers zulassen, um personalisierte Inhalte anbieten zu können (u.a. Bereitstellung, Messung und Berichte), und zwar auf der Grundlage der Präferenzen bzw. Interessen eines Benutzers, die aus den Daten, die über mehrere Websites, Apps oder Geräte hinweg gesammelt wurden, bekannt sind oder abgeleitet werden, sowie ggf. die Speicherung von Informationen auf Geräten und der Zugriff darauf zu diesem Zweck. Dies beinhaltet folgende Funktionen:<ul><li>Verknüpfung von Daten mit Offline-Quellen - Kombination von Daten aus Offline-Quellen, die ursprünglich in einem anderen Zusammenhang gesammelt wurden. </li><li>Verknüpfung von Geräten - Verarbeitung der Daten eines Benutzers zulassen, um diesen Benutzer über mehrere Geräte hinweg zu verbinden. </li><li>Genaue geografische Standortdaten - Verarbeitung des genauen Standortes eines Benutzers für Zwecke zulassen, für die der jeweilige Dritte über eine Zustimmung verfügt. </li></ul>'
 			},
 			purpose5: {
 				menu: 'Messung',
 				title: 'Messung',
-				description: 'Das Sammeln von Informationen über Ihre Nutzung der Inhalte, auch in Kombination mit vorher gesammelter Information, die zum Messen, Verstehen und Berichten Ihrer Nutzung des Inhalts dienen.',
+				description: 'Die Sammlung von Daten über Ihre Nutzung der Inhalte und deren Kombination mit bereits früher gesammelten Daten, um Ihre Nutzung der Inhalte zu messen, zu verstehen und darüber zu berichten.',
 			}
 		},
 		vendors: {
@@ -153,8 +153,8 @@ export default {
 			acceptAll: 'Alle akzeptieren',
 			company: 'Unternehmen',
 			offOn: 'Aktiv/Inaktiv',
-			description: 'Helfen Sie uns, Ihnen einen besseren Service zu bieten! Unsere Partner verwenden Cookies, um bei Ihrer Nutzung des Internets zu verstehen, welche Inhalte und Werbung für Sie relevant sind.',
-			moreChoices: 'Weitere Auswahlmöglichkeiten'
+			description: 'Helfen Sie uns, Ihnen ein besseres Online-Erlebnis zu bieten! Unsere Partner erstellen Cookies und sammeln über das Internet Informationen aus dem Browser, um Ihnen relevante Website-Inhalte und Werbung anzuzeigen sowie die Besucherstruktur verstehen zu können.',
+			moreChoices: 'Weitere Einstellungen'
 		},
 		footer: {
 			message: 'Sie können Ihre Datenschutz-Einstellungen hier',

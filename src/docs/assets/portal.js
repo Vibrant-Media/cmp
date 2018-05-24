@@ -7,9 +7,8 @@ const parts = host.split('.');
 const COOKIE_DOMAIN = parts.length > 1 ? `;domain=.${parts.slice(-2).join('.')}` : '';
 const COOKIE_MAX_AGE = 33696000;
 const COOKIE_NAME = 'euconsent';
-const VENDOR_LIST_ROOT = process.env.VENDOR_LIST_LOCATION;
 
-const readVendorListPromise = fetch(VENDOR_LIST_ROOT+'vendorlist.json', {
+const readVendorListPromise = fetch('./vendorlist.json', {
 	headers: {
 		'Accept': 'application/json',
 		'Content-Type': 'application/json'

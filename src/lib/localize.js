@@ -3,15 +3,8 @@ import config from './config';
 
 export function findLocale() {
 	let locale;
-
-	let req = new XMLHttpRequest();
-	req.open('GET', document.location, false);
-	req.send(null);
-	let contentLanguageHeader = req.getResponseHeader('Content-Language');
 	if (config.forceLocale) {
 		locale = config.forceLocale;
-	} else if (contentLanguageHeader) {
-		locale = contentLanguageHeader.split('-')[0];
 	} else {
 		locale = (navigator && (
 			navigator.language ||
@@ -21,7 +14,6 @@ export function findLocale() {
 			'en'
 		));
 	}
-
 	return locale.toLowerCase();
 }
 

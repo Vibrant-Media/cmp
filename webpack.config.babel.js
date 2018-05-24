@@ -185,7 +185,7 @@ module.exports = [
 	// CMP config
 	{
 		entry: {
-			'cmp.bundle': './index.js',
+			'cmp': './index.js',
 			'cmp-dev': './index.js',
 			'cmp.complete': './complete.js',
 			'readconsent': './read-consent.js'
@@ -235,7 +235,6 @@ module.exports = [
 			new webpack.NoEmitOnErrorsPlugin(),
 			new webpack.DefinePlugin({
 				'process.env.NODE_ENV': JSON.stringify(ENV),
-				'process.env.VENDOR_LIST_LOCATION': ENV === 'production' ? JSON.stringify('https://vendorlist.consensu.org/') : JSON.stringify('http://localhost:8088/docs/'),
 			}),
 			new webpack.ProvidePlugin({
 				'Promise': 'promise-polyfill',

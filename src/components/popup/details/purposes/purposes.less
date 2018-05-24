@@ -7,11 +7,12 @@
 	.purposeList {
 		font-size: 12px;
 		font-weight: bold;
-		flex: 0.7;
+		flex: 0.45;
 		max-width: 200px;
 		border-right: 1px solid @color-border;
 		overflow-y: auto;
 		overflow-x: hidden;
+	  	word-break: break-word;
 	}
 	.purposeItem {
 		display: flex;
@@ -21,6 +22,7 @@
 		background-color: @color-border;
 		border-bottom: 1px solid white;
 		cursor: pointer;
+	  	width: 100%;
 
 		&:last-child {
 			border-bottom: 1px solid @color-border;
@@ -32,18 +34,20 @@
 		}
 	}
 	.purposeDescription {
-		flex: 1;
+		flex: 0.55;
 		padding: 20px;
 		overflow: auto;
 	}
 	.purposeDetail {
+
+	  word-break: break-word;
 
 		.detailHeader {
 			display: flex;
 			flex-wrap: wrap;
 		}
 		.title {
-		  	font-size: 1.4em;
+		  	font-size: 1.0em;
 			font-weight: bold;
 			flex: 1 1 auto;
 			@media @smartphone {
