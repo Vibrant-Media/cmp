@@ -3,7 +3,6 @@ var vmCookieName = 'VM_CONSENT';
 var vmCookieExpiration =  Date.now() + 7*24*60*60*1000; // Expire in 7 days
 
 function handleConsentResult(vendorList, vendorConsents) {
-
 	if (!vendorList) {
 		// console.log('--No vendors were found.'); //Do Nothing
 		return;
@@ -20,7 +19,7 @@ function handleConsentResult(vendorList, vendorConsents) {
 	var vmConsentCookie = getVMCookie('VM_CONSENT');
 	if(vmConsentCookie && vmConsentCookie.length) {
 		vmConsentCookie = JSON.parse(vmConsentCookie);
-		if (vmConsentCookie && vmConsentCookie.length && vmConsentCookie.lastPrompDate < Date.now()) {
+		if (vmConsentCookie && vmConsentCookie.lastPrompDate < Date.now()) { // Expired?
 			window.__cmp('showFooter');
 			setVMCookie(vmConsentCookie.consentStr, vmCookieExpiration);
 		}
@@ -40,20 +39,25 @@ var setVMCookie = function (_consentStr, _lastPrompDate) {
 	var vmCookie = getVMCookie(vmCookieName);
 	var lastPrompDate;
 	if (_lastPrompDate) {
-		lastPrompDate = _lastPrompDate
-	} else if (vmCookie && vmCookie.length && vmCookie.lastPrompDate) {
-		lastPrompDate = vmCookie.lastPrompDate;
+		lastPrompDate = _lastPrompDate;
+	} else if (vmCookie && vmCookie.length) {
+		vmCookie = JSON.parse(vmCookie);
+		if (vmCookie.lastPrompDate) {
+			lastPrompDate = vmCookie.lastPrompDate;
+		} else {
+			lastPrompDate = vmCookieExpiration;
+		}
 	} else {
 		lastPrompDate = vmCookieExpiration;
 	}
 
-	const cookieData = {
+	var cookieData = {
 		consentStr: _consentStr,
 		consentExpiryDate: Date.now() + 86400000, //Expires in 24hrs
 		lastPrompDate: lastPrompDate
 	};
 
-	const cookieDataJson = JSON.stringify(cookieData);
+	var cookieDataJson = JSON.stringify(cookieData);
 
 	setCookie(vmCookieName, cookieDataJson, 365);
 };
@@ -76,9 +80,9 @@ var getVMCookie = function (cname) {
 
 (function(window, document) {
 	// Add eventlistener to catch the postmessage from the iframe
-	window.addEventListener('message', event => {
+	window.addEventListener('message', function (event) {
 		// Only look at messages with the vendorConsent property
-		const data = event.data.vmReadConsent;
+		var data = event.data.vmReadConsent;
 		if (data) {
 			clearTimeout(globalTimer);
 			var consentStr = data.consentStr || '';
@@ -148,13 +152,15 @@ var getVMCookie = function (cname) {
 					customPurposeListLocation: 'https://vibrant.mgr.consensu.org/purposes.json',
 					globalConsentLocation: 'https://vibrant.mgr.consensu.org/portal.html',
 					storeConsentGlobally: true,
+					logging: 'debug'
 				};
 				return cmp;
 			}());
 
 			var script = document.createElement('script');
 			script.async = false;
-			script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.0.js';
+			script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.2.js';
+			// script.src = '../cmp.bundle.1.0.3.js';
 			script.charset = 'utf-8';
 			var head = document.getElementsByTagName('head')[0];
 
