@@ -12,7 +12,6 @@ function handleConsentResult(vendorList, vendorConsents) {
 		return;
 	} else if (vendorList.vendorListVersion !== vendorConsents.vendorListVersion) {
 		window.__cmp('showFooter');
-		setVMCookie(vmConsentCookie.consentStr, vmCookieExpiration);
 		return;
 	}
 
@@ -21,7 +20,6 @@ function handleConsentResult(vendorList, vendorConsents) {
 		vmConsentCookie = JSON.parse(vmConsentCookie);
 		if (vmConsentCookie && vmConsentCookie.lastPrompDate < Date.now()) { // Expired?
 			window.__cmp('showFooter');
-			setVMCookie(vmConsentCookie.consentStr, vmCookieExpiration);
 		}
 	}
 

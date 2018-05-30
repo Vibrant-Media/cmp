@@ -16,9 +16,52 @@ export default class Footer extends Component {
 		onShowConsent: () => {},
 	};
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			vmCookieName: 'VM_CONSENT',
+			vmCookieExpiration: Date.now() + 7*24*60*60*1000 // Expire in 7 days
+		}
+	}
+
+	setCookie = function (cname, cvalue, exdays) {
+		let d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		let expires = "expires="+ d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	};
+
+	setVMCookie = function (_consentStr, _lastPrompDate) {
+		let vmCookie = getVMCookie(this.state.vmCookieName);
+		let lastPrompDate;
+		if (_lastPrompDate) {
+			lastPrompDate = _lastPrompDate;
+		} else if (vmCookie && vmCookie.length) {
+			vmCookie = JSON.parse(vmCookie);
+			if (vmCookie.lastPrompDate) {
+				lastPrompDate = vmCookie.lastPrompDate;
+			} else {
+				lastPrompDate = this.state.vmCookieExpiration;
+			}
+		} else {
+			lastPrompDate = this.state.vmCookieExpiration;
+		}
+
+		let cookieData = {
+			consentStr: _consentStr,
+			consentExpiryDate: Date.now() + 86400000, //Expires in 24hrs
+			lastPrompDate: lastPrompDate
+		};
+
+		let cookieDataJson = JSON.stringify(cookieData);
+		this.setCookie(this.state.vmCookieName, cookieDataJson, 365);
+	};
+
 	handleClose = () => {
 		const { store } = this.props;
 		const { toggleFooterShowing } = store;
+		const vmConsentCookie = getVMCookie('VM_CONSENT');
+		this.setVMCookie(vmConsentCookie.consentStr, this.state.vmCookieExpiration);
 		toggleFooterShowing(false);
 	};
 
