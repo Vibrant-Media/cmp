@@ -21,8 +21,24 @@ export default class Footer extends Component {
 		this.state = {
 			vmCookieName: 'VM_CONSENT',
 			vmCookieExpiration: Date.now() + 7*24*60*60*1000 // Expire in 7 days
-		}
+		};
 	}
+
+	getVMCookie = function (cname) {
+		let name = cname + "=";
+		let decodedCookie = decodeURIComponent(document.cookie);
+		let ca = decodedCookie.split(';');
+		for(let i = 0; i <ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	};
 
 	setCookie = function (cname, cvalue, exdays) {
 		let d = new Date();
@@ -32,7 +48,7 @@ export default class Footer extends Component {
 	};
 
 	setVMCookie = function (_consentStr, _lastPrompDate) {
-		let vmCookie = getVMCookie(this.state.vmCookieName);
+		let vmCookie = this.getVMCookie(this.state.vmCookieName);
 		let lastPrompDate;
 		if (_lastPrompDate) {
 			lastPrompDate = _lastPrompDate;
@@ -60,7 +76,7 @@ export default class Footer extends Component {
 	handleClose = () => {
 		const { store } = this.props;
 		const { toggleFooterShowing } = store;
-		const vmConsentCookie = getVMCookie('VM_CONSENT');
+		const vmConsentCookie = this.getVMCookie('VM_CONSENT');
 		this.setVMCookie(vmConsentCookie.consentStr, this.state.vmCookieExpiration);
 		toggleFooterShowing(false);
 	};
@@ -68,6 +84,8 @@ export default class Footer extends Component {
 	handleShowConsent = () => {
 		const { store } = this.props;
 		const { toggleConsentToolShowing } = store;
+		const vmConsentCookie = this.getVMCookie('VM_CONSENT');
+		this.setVMCookie(vmConsentCookie.consentStr, this.state.vmCookieExpiration);
 		toggleConsentToolShowing(true);
 	};
 
