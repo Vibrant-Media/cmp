@@ -53,7 +53,7 @@ var setVMCookie = function (_consentStr, _lastPrompDate) {
 
 	var cookieData = {
 		consentStr: _consentStr,
-		consentExpiryDate: vmCookieExpiration, //Expires in 24hrs
+		consentExpiryDate: vmCookieExpiration, //Expires in 7 days
 		lastPrompDate: lastPrompDate
 	};
 
