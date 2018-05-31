@@ -12,6 +12,7 @@ function handleConsentResult(vendorList, vendorConsents) {
 		return;
 	} else if (vendorList.vendorListVersion !== vendorConsents.vendorListVersion) {
 		window.__cmp('showFooter');
+		// setVMCookie(vmConsentCookie.consentStr, vmCookieExpiration);
 		return;
 	}
 
@@ -20,6 +21,7 @@ function handleConsentResult(vendorList, vendorConsents) {
 		vmConsentCookie = JSON.parse(vmConsentCookie);
 		if (vmConsentCookie && vmConsentCookie.lastPrompDate < Date.now()) { // Expired?
 			window.__cmp('showFooter');
+			// setVMCookie(vmConsentCookie.consentStr, vmCookieExpiration);
 		}
 	}
 
@@ -51,7 +53,7 @@ var setVMCookie = function (_consentStr, _lastPrompDate) {
 
 	var cookieData = {
 		consentStr: _consentStr,
-		consentExpiryDate: Date.now() + 86400000, //Expires in 24hrs
+		consentExpiryDate: vmCookieExpiration, //Expires in 24hrs
 		lastPrompDate: lastPrompDate
 	};
 
@@ -157,8 +159,7 @@ var getVMCookie = function (cname) {
 
 			var script = document.createElement('script');
 			script.async = false;
-			script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.2.js';
-			// script.src = '../cmp.bundle.1.0.3.js';
+			script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.3.js';
 			script.charset = 'utf-8';
 			var head = document.getElementsByTagName('head')[0];
 
@@ -172,7 +173,7 @@ var getVMCookie = function (cname) {
 				window.__cmp('getVendorList', null, function(vendorList) {
 					var timeout = setTimeout(function() {
 						handleConsentResult(vendorList);
-					}, 100);
+					}, 300);
 
 					window.__cmp('getVendorConsents', null, function(vendorConsents) {
 						clearTimeout(timeout);
@@ -182,6 +183,16 @@ var getVMCookie = function (cname) {
 			});
 
 			head.appendChild(script);
+
+			window.__cmp('addEventListener', 'onSubmit', function(result) {
+				var consentDataTimeout = setTimeout(function () {
+					console.log('timeout');
+				}, 200);
+				window.__cmp('getConsentData', null, function(data) {
+					clearTimeout(consentDataTimeout);
+					setVMCookie(data.consentData);
+				});
+			});
 		}
 	}
 
