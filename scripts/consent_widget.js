@@ -125,8 +125,7 @@ var callConsentSync = function (_consentString, _lastPrompDate) {
 
 			var script = document.createElement('script');
 			script.async = false;
-			// script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.3.js';
-			script.src = 'http://localhost:8088/cmp.bundle.1.0.3.js';
+			script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.4.js';
 			script.charset = 'utf-8';
 			var head = document.getElementsByTagName('head')[0];
 
