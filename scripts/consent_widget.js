@@ -1,81 +1,47 @@
-var vmCookieExpiryDays = 365;
-var vmCookieName = 'VM_CONSENT';
-var vmCookieExpiration =  Date.now() + 7*24*60*60*1000; // Expire in 7 days
+var synchedCookie;
 
 function handleConsentResult(vendorList, vendorConsents) {
 	if (!vendorList) {
-		// console.log('--No vendors were found.'); //Do Nothing
 		return;
 	} else if (!vendorConsents) {
-		// console.log('--No consent data found. Showing consent tool');
 		window.__cmp('showConsentTool');
 		return;
 	} else if (vendorList.vendorListVersion !== vendorConsents.vendorListVersion) {
 		window.__cmp('showFooter');
-		// setVMCookie(vmConsentCookie.consentStr, vmCookieExpiration);
 		return;
 	}
 
-	var vmConsentCookie = getVMCookie('VM_CONSENT');
-	if(vmConsentCookie && vmConsentCookie.length) {
-		vmConsentCookie = JSON.parse(vmConsentCookie);
-		if (vmConsentCookie && vmConsentCookie.lastPrompDate < Date.now()) { // Expired?
+	if (synchedCookie && synchedCookie.lastPrompDate) {
+		var expirationDate = parseInt(synchedCookie.lastPrompDate)+(7*24*60*60); //7 Days
+		var date = Date.now();
+		if (expirationDate < date) {
 			window.__cmp('showFooter');
-			// setVMCookie(vmConsentCookie.consentStr, vmCookieExpiration);
 		}
 	}
-
 }
 
-function setCookie(cname, cvalue, exdays) {
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays*24*60*60*1000));
-	var expires = "expires="+ d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-var setVMCookie = function (_consentStr, _lastPrompDate) {
-
-	var vmCookie = getVMCookie(vmCookieName);
-	var lastPrompDate;
-	if (_lastPrompDate) {
-		lastPrompDate = _lastPrompDate;
-	} else if (vmCookie && vmCookie.length) {
-		vmCookie = JSON.parse(vmCookie);
-		if (vmCookie.lastPrompDate) {
-			lastPrompDate = vmCookie.lastPrompDate;
-		} else {
-			lastPrompDate = vmCookieExpiration;
-		}
-	} else {
-		lastPrompDate = vmCookieExpiration;
-	}
-
-	var cookieData = {
-		consentStr: _consentStr,
-		consentExpiryDate: vmCookieExpiration, //Expires in 7 days
-		lastPrompDate: lastPrompDate
-	};
-
-	var cookieDataJson = JSON.stringify(cookieData);
-
-	setCookie(vmCookieName, cookieDataJson, 365);
+window.cookieSyncCallback = function (data) {
+	synchedCookie = data;
+	clearTimeout(window.consentTimeout);
+	window.cmpCall();
 };
 
-var getVMCookie = function (cname) {
-	var name = cname + "=";
-	var decodedCookie = decodeURIComponent(document.cookie);
-	var ca = decodedCookie.split(';');
-	for(var i = 0; i <ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
+var callConsentSync = function (_consentString, _lastPrompDate) {
+	window.consentTimeout = setTimeout(function () {
+		console.log('sync consent timeout');
+		window.cmpCall();
+	}, 500);
+
+	var script = document.createElement('script');
+	if (_consentString && _lastPrompDate) {
+		script.setAttribute('src', 'http://k.intellitxt.com/csync/0?callback=cookieSyncCallback&consentStr='+_consentString+'&lastPrompDate='+_lastPrompDate);
+	} else if (_consentString) {
+		script.setAttribute('src', 'http://k.intellitxt.com/csync/0?callback=cookieSyncCallback&consentStr='+_consentString);
+	} else {
+		script.setAttribute('src', 'http://k.intellitxt.com/csync/0?callback=cookieSyncCallback&consentStr=undefined&lastPrompDate=undefined');
 	}
-	return "";
+
+	document.getElementsByTagName('head')[0].appendChild(script);
 };
 
 (function(window, document) {
@@ -83,17 +49,17 @@ var getVMCookie = function (cname) {
 	window.addEventListener('message', function (event) {
 		// Only look at messages with the vendorConsent property
 		var data = event.data.vmReadConsent;
-		if (data) {
-			clearTimeout(globalTimer);
+		if (event.data.vmReadConsent) {
 			var consentStr = data.consentStr || '';
-			// write a local cookie
 			if (consentStr.length) {
-				setVMCookie(consentStr);
+				callConsentSync(consentStr);
+			} else {
+				window.cmpCall();
 			}
-			cmpCall();
 		}
 	});
-	var cmpCall = function () {
+
+	window.cmpCall = function () {
 		if (!window.__cmp) {
 			window.__cmp = (function() {
 				var listen = window.attachEvent || window.addEventListener;
@@ -159,7 +125,8 @@ var getVMCookie = function (cname) {
 
 			var script = document.createElement('script');
 			script.async = false;
-			script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.3.js';
+			// script.src = 'https://vibrant.mgr.consensu.org/cmp.bundle.1.0.3.js';
+			script.src = 'http://localhost:8088/cmp.bundle.1.0.3.js';
 			script.charset = 'utf-8';
 			var head = document.getElementsByTagName('head')[0];
 
@@ -190,11 +157,22 @@ var getVMCookie = function (cname) {
 				}, 200);
 				window.__cmp('getConsentData', null, function(data) {
 					clearTimeout(consentDataTimeout);
-					setVMCookie(data.consentData);
+					callConsentSync(data.consentData, Date.now());
+				});
+			});
+
+			//OnFooter Close
+			window.__cmp('addEventListener', 'onClose', function (data) {
+				var consentDataTimeout = setTimeout(function () {
+					console.log('timeout');
+				}, 200);
+				window.__cmp('getConsentData', null, function(data) {
+					clearTimeout(consentDataTimeout);
+					callConsentSync(data.consentData, Date.now());
 				});
 			});
 		}
-	}
+	};
 
 	// Create the iframe in the correct domain to read the cookie
 	var iframe = document.createElement('iframe');
@@ -205,7 +183,7 @@ var getVMCookie = function (cname) {
 
 	// set a global timeout
 	var globalTimer = setTimeout(function() {
-		console.log('CMP: Global Time out');
+		// console.log('CMP: Global timeout');
 	}, 1000);
 
 })(window, document);
