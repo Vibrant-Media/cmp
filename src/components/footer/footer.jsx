@@ -18,74 +18,18 @@ export default class Footer extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			vmCookieName: 'VM_CONSENT',
-			vmCookieExpiration: Date.now() + 7*24*60*60*1000 // Expire in 7 days
-		};
 	}
 
-	getVMCookie = function (cname) {
-		let name = cname + "=";
-		let decodedCookie = decodeURIComponent(document.cookie);
-		let ca = decodedCookie.split(';');
-		for(let i = 0; i <ca.length; i++) {
-			let c = ca[i];
-			while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) == 0) {
-				return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	};
-
-	setCookie = function (cname, cvalue, exdays) {
-		let d = new Date();
-		d.setTime(d.getTime() + (exdays*24*60*60*1000));
-		let expires = "expires="+ d.toUTCString();
-		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	};
-
-	setVMCookie = function (_consentStr, _lastPrompDate) {
-		let vmCookie = this.getVMCookie(this.state.vmCookieName);
-		let lastPrompDate;
-		if (_lastPrompDate) {
-			lastPrompDate = _lastPrompDate;
-		} else if (vmCookie && vmCookie.length) {
-			vmCookie = JSON.parse(vmCookie);
-			if (vmCookie.lastPrompDate) {
-				lastPrompDate = vmCookie.lastPrompDate;
-			} else {
-				lastPrompDate = this.state.vmCookieExpiration;
-			}
-		} else {
-			lastPrompDate = this.state.vmCookieExpiration;
-		}
-
-		let cookieData = {
-			consentStr: _consentStr,
-			consentExpiryDate: Date.now() + 86400000, //Expires in 24hrs
-			lastPrompDate: lastPrompDate
-		};
-
-		let cookieDataJson = JSON.stringify(cookieData);
-		this.setCookie(this.state.vmCookieName, cookieDataJson, 365);
-	};
-
 	handleClose = () => {
-		const { store } = this.props;
+		const { store, notify } = this.props;
 		const { toggleFooterShowing } = store;
-		const vmConsentCookie = this.getVMCookie('VM_CONSENT');
-		this.setVMCookie(vmConsentCookie.consentStr, this.state.vmCookieExpiration);
+		notify('onClose');
 		toggleFooterShowing(false);
 	};
 
 	handleShowConsent = () => {
 		const { store } = this.props;
 		const { toggleConsentToolShowing } = store;
-		const vmConsentCookie = this.getVMCookie('VM_CONSENT');
-		this.setVMCookie(vmConsentCookie.consentStr, this.state.vmCookieExpiration);
 		toggleConsentToolShowing(true);
 	};
 
