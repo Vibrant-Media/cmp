@@ -1,4 +1,3 @@
-var synchedCookie;
 
 function handleConsentResult(vendorList, vendorConsents) {
 	if (!vendorList) {
@@ -10,54 +9,25 @@ function handleConsentResult(vendorList, vendorConsents) {
 		window.__cmp('showFooter');
 		return;
 	}
-
-	if (synchedCookie && synchedCookie.lastPrompDate) {
-		var expirationDate = parseInt(synchedCookie.lastPrompDate)+(7*24*60*60); //7 Days
-		var date = Date.now();
-		if (expirationDate < date) {
+	var lastPrompDate = getLastPrompDate();
+	if (lastPrompDate) {
+		var expirationDate = parseInt(lastPrompDate)+(7*24*60*60); //7 Days
+		var today = Date.now();
+		if (expirationDate < today) {
 			window.__cmp('showFooter');
 		}
 	}
 }
 
-window.cookieSyncCallback = function (data) {
-	synchedCookie = data;
-	clearTimeout(window.consentTimeout);
-	window.cmpCall();
+var setLastPrompDate = function (lastPrompDate) {
+	window.localStorage.setItem('lastPrompDate', lastPrompDate);
 };
 
-var callConsentSync = function (_consentString, _lastPrompDate) {
-	window.consentTimeout = setTimeout(function () {
-		console.log('sync consent timeout');
-		window.cmpCall();
-	}, 500);
-
-	var script = document.createElement('script');
-	if (_consentString && _lastPrompDate) {
-		script.setAttribute('src', 'http://k.intellitxt.com/csync/0?callback=cookieSyncCallback&consentStr='+_consentString+'&lastPrompDate='+_lastPrompDate);
-	} else if (_consentString) {
-		script.setAttribute('src', 'http://k.intellitxt.com/csync/0?callback=cookieSyncCallback&consentStr='+_consentString);
-	} else {
-		script.setAttribute('src', 'http://k.intellitxt.com/csync/0?callback=cookieSyncCallback&consentStr=undefined&lastPrompDate=undefined');
-	}
-
-	document.getElementsByTagName('head')[0].appendChild(script);
+var getLastPrompDate = function () {
+	return localStorage.getItem('lastPrompDate');
 };
 
 (function(window, document) {
-	// Add eventlistener to catch the postmessage from the iframe
-	window.addEventListener('message', function (event) {
-		// Only look at messages with the vendorConsent property
-		var data = event.data.vmReadConsent;
-		if (event.data.vmReadConsent) {
-			var consentStr = data.consentStr || '';
-			if (consentStr.length) {
-				callConsentSync(consentStr);
-			} else {
-				window.cmpCall();
-			}
-		}
-	});
 
 	window.cmpCall = function () {
 		if (!window.__cmp) {
@@ -117,7 +87,7 @@ var callConsentSync = function (_consentString, _lastPrompDate) {
 					globalVendorListLocation: 'https://vendorlist.consensu.org/vendorlist.json',
 					customPurposeListLocation: 'https://vibrant.mgr.consensu.org/purposes.json',
 					globalConsentLocation: 'https://vibrant.mgr.consensu.org/portal.html',
-					storeConsentGlobally: true,
+					storeConsentGlobally: false,
 					logging: 'debug'
 				};
 				return cmp;
@@ -151,34 +121,16 @@ var callConsentSync = function (_consentString, _lastPrompDate) {
 			head.appendChild(script);
 
 			window.__cmp('addEventListener', 'onSubmit', function(result) {
-				var consentDataTimeout = setTimeout(function () {
-					console.log('timeout');
-				}, 200);
-				window.__cmp('getConsentData', null, function(data) {
-					clearTimeout(consentDataTimeout);
-					callConsentSync(data.consentData, Date.now());
-				});
+				setLastPrompDate(Date.now());
 			});
 
 			//OnFooter Close
 			window.__cmp('addEventListener', 'onClose', function (data) {
-				var consentDataTimeout = setTimeout(function () {
-					console.log('timeout');
-				}, 200);
-				window.__cmp('getConsentData', null, function(data) {
-					clearTimeout(consentDataTimeout);
-					callConsentSync(data.consentData, Date.now());
-				});
+				setLastPrompDate(Date.now());
 			});
 		}
 	};
-
-	// Create the iframe in the correct domain to read the cookie
-	var iframe = document.createElement('iframe');
-	iframe.setAttribute('style', 'width:1px;height:1px;position:absolute;left:-99px;top:-99px;');
-	iframe.setAttribute('src', 'https://vibrant.mgr.consensu.org/readconsent.html');
-	var head = document.getElementsByTagName('head')[0];
-	head.appendChild(iframe);
+	window.cmpCall();
 
 	// set a global timeout
 	var globalTimer = setTimeout(function() {
